@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <limits>
 
 using namespace std;
 
@@ -25,7 +26,22 @@ int main()
 	{
 	  guessNum++;
 	  cin >> guess;
-	  if
+
+	  //code from hackerearth
+	  //https://www.hackerearth.com/practice/notes/validating-user-input-in-c/
+	  //verifies input type
+	  while(1)
+	    {
+	      if(cin.fail())
+		{
+		  cin.clear();
+		  cin.ignore(numeric_limits<streamsize>::max(),'\n');
+		  cout << "You must enter an integer. Try again." << endl;
+		  cin >> guess;
+		}
+	      if(!cin.fail())
+		break;
+	    }
 	  
 	  if(guess < number)
 	    {
